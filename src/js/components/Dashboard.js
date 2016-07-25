@@ -9,14 +9,14 @@ export default class Dashboard extends Component {
 
     const isEmpty = items.length === 0
     
+    if (isEmpty && isFetching) {
+      return <p><i>Loading...</i></p>
+    }
+    
     if (selected === null) {
       return <p><i>No Dashboard selected</i></p>
     }
     
-    if (isEmpty && isFetching) {
-      return <p><i>Loading...</i></p>
-    }
-
     if (isEmpty && !isFetching) {
       return (
       <p>
@@ -30,7 +30,9 @@ export default class Dashboard extends Component {
     return (
       <div>
         Showing {items.length} widgets.
-        {items.map(renderItem)}
+        {items.map(function(item) {
+          return <div key={item.id}>{renderItem(item)}</div>
+        })}
       </div>
     )
   }

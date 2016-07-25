@@ -54,6 +54,7 @@
     "humps": "^0.6.0",
     "isomorphic-fetch": "^2.1.1",
     "lodash": "4.5.0",
+    "metrics-graphics": "2.9.0",
     "normalizr": "^2.0.0",
     "react": "0.14.7",
     "react-dom": "0.14.7",

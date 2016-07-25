@@ -21,6 +21,6 @@ export default class Picker extends Component {
 
 Picker.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     onChange: PropTypes.func.isRequired
 }

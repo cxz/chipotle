@@ -6,15 +6,9 @@ import './DashboardApp.scss';
 
 import Picker from '../components/Picker';
 import Dashboard from '../components/Dashboard';
+import Widget from '../components/Widget';
 
 import * as DashboardActions from '../actions/dashboard';
-
-function loadData(props) {
-  const { actions, selected } = props
-  actions.loadDashboards();
-  //actions.loadWidgets(dashboard)
-  //actions.loadObservers(dashboard)
-}
 
 class DashboardApp extends Component {
   constructor(props) {
@@ -28,7 +22,7 @@ class DashboardApp extends Component {
 
   componentDidMount() {
     const { actions, selected } = this.props;
-    loadData(this.props);
+    actions.loadDashboards();
   }
   
   componentWillReceiveProps(nextProps) {
@@ -50,6 +44,7 @@ class DashboardApp extends Component {
     return (
       <div>
         {widget.id}
+        <Widget widget={widget} key={widget.id}/>
       </div>
     )
   }
@@ -75,7 +70,7 @@ class DashboardApp extends Component {
 
 DashboardApp.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  selected: PropTypes.string.isRequired,
+  selected: PropTypes.string,
   dashboards: PropTypes.array.isRequired,
   widgets: PropTypes.array.isRequired,
 };
@@ -89,7 +84,7 @@ function mapStateToProps(state, ownProps) {
   
   
   const selected = d.selected
-  const widgetIds = selected ? dashboards[selected].widgets : []
+  const widgetIds = selected === null ? [] : dashboards[selected].widgets;
   
   return {
     isFetching: d.isFetching,
